@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 class Log {
-    static private final String logFullName = CalcFile.fileFullName(Log.class, "log.txt");
+    static private final String logFullName = CalcFile.fileFullName(Log.class, "logEverything.txt");
 
 
     public static void reWriteLog(String newMessage) {

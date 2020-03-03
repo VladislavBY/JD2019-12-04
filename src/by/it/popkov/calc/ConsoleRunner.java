@@ -13,6 +13,7 @@ class ConsoleRunner {
         Printer printer = new Printer();
         Parser parser = new Parser();
         LangSwitcher langSwitcher = LangSwitcher.LANG_SWITCHER;
+        SingletonLog singletonLog = SingletonLog.getInstance();
         try {
             if (Files.exists(Paths.get(CalcFile.getFullFileName())))
                 CalcFile.readValue(parser);
@@ -34,6 +35,7 @@ class ConsoleRunner {
                 } catch (CalcException e) {
                     String message = langSwitcher.getResourceBundle().getString(e.getMessage());
                     Log.writeLog(message);
+                    singletonLog.writeLog(message);
                     System.out.println(message);
                 }
         }
