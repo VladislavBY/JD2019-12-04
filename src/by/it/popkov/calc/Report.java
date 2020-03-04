@@ -6,6 +6,6 @@ interface Report {
     void writeHead();
     void writeTimeStart(LocalDateTime startTime);
     void writeTimeFinish(LocalDateTime finishTime);
-    void writeOperation();
-    void writeErrors();
+    void writeOperation(String logOperation);
+    void writeErrors(String logError);
 }

@@ -45,7 +45,8 @@ class ConsoleRunner {
         LocalDateTime finishTime = LocalDateTime.now();
         System.out.println("Chose report format. Write \"long\" or \"short\"");
         reportConstructor.setReportType(scanner.nextLine());
-        reportConstructor.writeReport(startTime, finishTime);
+
+        reportConstructor.writeReport(startTime, finishTime, Log.getLogFullName(), SingletonLog.getLogFileName());
     }
 
 }

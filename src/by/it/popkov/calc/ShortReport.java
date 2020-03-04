@@ -24,10 +24,10 @@ class ShortReport implements Report {
     }
 
     @Override
-    public void writeOperation() {
+    public void writeOperation(String logOperation) {
         System.out.println("List of operation:");
         try {
-            Files.lines(Paths.get(Log.getLogFullName())).forEach(System.out::println);
+            Files.lines(Paths.get(logOperation)).forEach(System.out::println);
         } catch (IOException e) {
             System.out.println("No operation");
         }
@@ -35,10 +35,10 @@ class ShortReport implements Report {
     }
 
     @Override
-    public void writeErrors() {
+    public void writeErrors(String logError) {
         System.out.println("List of errors:");
         try {
-            Files.lines(Paths.get(SingletonLog.getLogFileName())).forEach(System.out::println);
+            Files.lines(Paths.get(logError)).forEach(System.out::println);
         } catch (IOException e) {
             System.out.println("No errors :-)");
         }

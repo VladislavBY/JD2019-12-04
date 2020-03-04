@@ -9,11 +9,11 @@ class ReportConstructor {
         if (type.equalsIgnoreCase("short")) report = new ShortReport();
         else if (type.equalsIgnoreCase("long")) report = new LongReport();
     }
-    void writeReport(LocalDateTime startTime, LocalDateTime finishTime){
+    void writeReport(LocalDateTime startTime, LocalDateTime finishTime, String logOperation, String logError){
         report.writeHead();
         report.writeTimeStart(startTime);
         report.writeTimeFinish(finishTime);
-        report.writeOperation();
-        report.writeErrors();
+        report.writeOperation(logOperation);
+        report.writeErrors(logError);
     }
 }
