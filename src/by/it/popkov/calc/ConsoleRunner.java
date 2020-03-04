@@ -14,6 +14,7 @@ class ConsoleRunner {
         Parser parser = new Parser();
         LangSwitcher langSwitcher = LangSwitcher.LANG_SWITCHER;
         SingletonLog singletonLog = SingletonLog.getInstance();
+        ReportConstructor reportConstructor = new ReportConstructor();
         try {
             if (Files.exists(Paths.get(CalcFile.getFullFileName())))
                 CalcFile.readValue(parser);
@@ -22,22 +23,25 @@ class ConsoleRunner {
         }
 
         while (true) {
-
-            String expression = scanner.nextLine();
+            String expression = scanner.nextLine().toLowerCase();
             if (expression.equals("end")) break;
             else if (expression.equals("printvar")) Var.printvar();
             else if (expression.equals("sortvar")) Var.sortvar();
             else if (expression.equals("en")) langSwitcher.setResourceBundle(new Locale("en"));
             else if (expression.equals("be")) langSwitcher.setResourceBundle(new Locale("be"));
             else if (expression.equals("ru")) langSwitcher.setResourceBundle(new Locale("ru"));
+            else if (expression.equals("long") || expression.equals("short")){
+                reportConstructor.setReportType(expression);
+                reportConstructor.writeReport();
+            }
             else try {
-                    printer.print(parser.calc(expression));
-                } catch (CalcException e) {
-                    String message = langSwitcher.getResourceBundle().getString(e.getMessage());
-                    Log.writeLog(message);
-                    singletonLog.writeLog(message);
-                    System.out.println(message);
-                }
+                printer.print(parser.calc(expression));
+            } catch (CalcException e) {
+                String message = langSwitcher.getResourceBundle().getString(e.getMessage());
+                Log.writeLog(message);
+                singletonLog.writeLog(message);
+                System.out.println(message);
+            }
         }
     }
 
