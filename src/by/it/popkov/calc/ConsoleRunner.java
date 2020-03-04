@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -46,7 +45,7 @@ class ConsoleRunner {
         System.out.println("Chose report format. Write \"long\" or \"short\"");
         reportConstructor.setReportType(scanner.nextLine());
 
-        reportConstructor.writeReport(startTime, finishTime, Log.getLogFullName(), SingletonLog.getLogFileName());
+        reportConstructor.writeReport(startTime, finishTime, OperationLog.getLogFullName(), SingletonLog.getLogFileName());
     }
 
 }
