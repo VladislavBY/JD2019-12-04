@@ -3,7 +3,7 @@ package by.it.popkov.calc;
 class LongReport implements Report{
     @Override
     public void writeHead() {
-        
+
     }
 
     @Override
