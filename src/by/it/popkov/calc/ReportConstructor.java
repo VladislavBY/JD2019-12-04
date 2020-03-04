@@ -1,16 +1,19 @@
 package by.it.popkov.calc;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 class ReportConstructor {
     private Report report;
     void setReportType(String type){
         if (type.equalsIgnoreCase("short")) report = new ShortReport();
         else if (type.equalsIgnoreCase("long")) report = new LongReport();
     }
-    void writeReport(){
+    void writeReport(LocalDateTime startTime, LocalDateTime finishTime){
         report.writeHead();
-        report.writeTimeStart();
+        report.writeTimeStart(startTime);
+        report.writeTimeFinish(finishTime);
         report.writeOperation();
         report.writeErrors();
-        report.writeTimeFinish();
     }
 }

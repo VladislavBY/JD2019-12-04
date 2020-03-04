@@ -11,7 +11,11 @@ import java.util.List;
 class SingletonLog {
     private SingletonLog(){}
     static private volatile SingletonLog instance;
-    private String logFileName = CalcFile.fileFullName(SingletonLog.class, "log.txt");
+    private static String logFileName = CalcFile.fileFullName(SingletonLog.class, "log.txt");
+
+    public static String getLogFileName() {
+        return logFileName;
+    }
 
     public static SingletonLog getInstance() {
         SingletonLog localInstance = instance;

@@ -1,28 +1,47 @@
 package by.it.popkov.calc;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 class ShortReport implements Report {
     @Override
     public void writeHead() {
-        System.out.println("Short Head");
+        System.out.println("Short Report");
     }
 
     @Override
-    public void writeTimeStart() {
-        System.out.println("Short TimeStart");
+    public void writeTimeStart(LocalDateTime startTime) {
+        System.out.println("Start time: " + startTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
     }
 
     @Override
-    public void writeTimeFinish() {
-        System.out.println("Short TimeFinish");
+    public void writeTimeFinish(LocalDateTime finishTime) {
+        System.out.println("Finish time: " + finishTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
     }
 
     @Override
     public void writeOperation() {
-        System.out.println("Short Operation");
+        System.out.println("List of operation:");
+        try {
+            Files.lines(Paths.get(Log.getLogFullName())).forEach(System.out::println);
+        } catch (IOException e) {
+            System.out.println("No operation");
+        }
+
     }
 
     @Override
     public void writeErrors() {
-        System.out.println("Short Errors");
+        System.out.println("List of errors:");
+        try {
+            Files.lines(Paths.get(SingletonLog.getLogFileName())).forEach(System.out::println);
+        } catch (IOException e) {
+            System.out.println("No errors :-)");
+        }
+
     }
 }
